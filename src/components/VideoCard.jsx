@@ -1,20 +1,32 @@
+import { NavLink } from "react-router-dom";
 import { useVideos } from "../contexts/VideosContext";
 
-const VideoCard = ({video}) =>{
+const VideoCard = ({video, likedVideos, watchLater, individualVideo}) =>{
     const {handleLikedBtn, handleAddToWatchLaterBtn} = useVideos();
     const {id, title, description, url, thumbnail, duration, isLiked, isAddedToWatchLater} = video;
     return(
         <div className='video-card'>
             <img src={thumbnail} alt={title} />
             <p>{title}</p>
-            <p><a href={url}>Watch here</a></p>
+            <p><NavLink to={`/videos/${id}`}>Watch here</NavLink></p>
             {
-                !isLiked ? (<button onClick={()=>handleLikedBtn(video)}>Like</button>) : (<button disabled>Liked</button>)
+                individualVideo && (
+                    <>
+                        <p><b>Description: {description}</b></p>
+                        <p><i>Duration: {duration}</i></p>
+                    </>
+                )
             }
             {
-                !isAddedToWatchLater ? (<button onClick={()=>handleAddToWatchLaterBtn(video)}>Add to Watch Later</button>) : (<button disabled>Added To Watch Later</button>)
+                !likedVideos && (
+                    <button disabled={isLiked} onClick={()=>handleLikedBtn(video)}>{isLiked ? 'Liked' : 'Like'}</button>
+                )
             }
-            
+            {
+                !watchLater && (
+                    <button disabled={isAddedToWatchLater} onClick={()=>handleAddToWatchLaterBtn(video)}>{isAddedToWatchLater ? 'Added' : 'Add'} to Watch Later</button>
+                )
+            }
         </div>
     )
 }

@@ -16,7 +16,7 @@ export default function App() {
         <Route path='/all-videos' element={<VideosListing/>} />
         <Route path='/liked-videos' element={<LikedVideos/>} />
         <Route path='/watch-later' element={<WatchLater/>} />
-        <Route path='/video/:videoId' element={<IndividualVideo />} />
+        <Route path='/videos/:videoId' element={<IndividualVideo />} />
       </Routes>
     </div>
   );

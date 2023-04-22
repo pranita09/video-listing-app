@@ -7,6 +7,7 @@ const LikedVideos = () =>{
     const likedVideos = videos.filter(({isLiked})=> isLiked)
     return(
         <>
+            <h1>Liked Videos</h1>
           {
             isLoading ? 
                 (<h2>Loading...</h2>) : 
@@ -16,7 +17,7 @@ const LikedVideos = () =>{
                                 <div className='all-videos'>
                                     {
                                         likedVideos.map((video)=> (
-                                            <VideoCard key={video.id} video={video}/>
+                                            <VideoCard key={video.id} video={video} likedVideos/>
                                             )
                                         ) 
                                 }
