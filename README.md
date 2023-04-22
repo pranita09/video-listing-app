@@ -1,2 +1,2 @@
 # video-listing-app
-Created with CodeSandbox
+Video Liating App with multiple pages such as VideosListing, Liked Videos and Watch Later, etc.
