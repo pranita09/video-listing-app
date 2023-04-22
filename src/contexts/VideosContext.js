@@ -26,8 +26,18 @@ export const VideosProvider = ({children}) =>{
         getData();
     },[])
 
+    const handleLikedBtn = (videoToLike) =>{
+        const updatedVideos = videos.map((video)=> video.id === videoToLike.id ? {...video, isLiked: true} : video);
+        setVideos(updatedVideos);
+    }
+
+    const handleAddToWatchLaterBtn = (videoToAdd) =>{
+        const updatedVideos = videos.map((video)=> video.id === videoToAdd.id ? {...video, isAddedToWatchLater: true} : video);
+        setVideos(updatedVideos)
+    }
+
     return(
-        <VideosContext.Provider value={{ videos, isLoading}}>
+        <VideosContext.Provider value={{ videos, isLoading, handleLikedBtn, handleAddToWatchLaterBtn}}>
             {children}
         </VideosContext.Provider>
     )
